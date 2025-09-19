@@ -40,7 +40,40 @@ endmodule
 ```
 ### SR Flip-Flop Test bench 
 ```verilog
+module sr_ff_tb;
+    reg S, R, clk;
+    wire Q;
 
+    sr_ff uut (
+        .S(S), 
+        .R(R), 
+        .clk(clk), 
+        .Q(Q)
+    );
+
+    initial begin
+        clk = 0;
+        forever #5 clk = ~clk;
+    end
+
+    initial begin
+        S = 0; R = 0;
+        #10;
+        S = 0; R = 1;
+        #10;
+        S = 0; R = 0;
+        #10;
+        S = 1; R = 0;
+        #10;
+        S = 0; R = 0;
+        #10;
+        S = 1; R = 1;
+        #10;
+        S = 0; R = 0;
+        #20;
+        $finish;
+    end
+endmodule
 
 
 ```
@@ -65,7 +98,39 @@ endmodule
 ```verilog
 
 
+module jk_ff_tb;
+    reg J, K, clk;
+    wire Q;
 
+    jk_ff uut (
+        .J(J), 
+        .K(K), 
+        .clk(clk), 
+        .Q(Q)
+    );
+
+    initial begin
+        clk = 0;
+        forever #5 clk = ~clk;
+    end
+
+    initial begin
+        J = 0; K = 0;
+        #10;
+        J = 1; K = 0;
+        #10;
+        J = 0; K = 0;
+        #10;
+        J = 0; K = 1;
+        #10;
+        J = 1; K = 1;
+        #10;
+        J = 1; K = 1;
+        #10;
+        #20;
+        $finish;
+    end
+endmodule
 ```
 #### SIMULATION OUTPUT
 
@@ -85,7 +150,34 @@ endmodule
 ```
 ### D Flip-Flop Test bench 
 ```verilog
+module d_ff_tb;
+    reg d, clk;
+    wire Q;
 
+    d_ff uut (
+        .d(d), 
+        .clk(clk), 
+        .Q(Q)
+    );
+
+    initial begin
+        clk = 0;
+        forever #5 clk = ~clk;
+    end
+
+    initial begin
+        d = 0;
+        #10;
+        d = 1;
+        #10;
+        d = 0;
+        #10;
+        d = 1;
+        #10;
+        #20;
+        $finish;
+    end
+endmodule
 
 
 ```
@@ -109,7 +201,35 @@ endmodule
 ### T Flip-Flop Test bench 
 ```verilog
 
+module t_ff_tb;
+    reg T, clk;
+    wire Q;
 
+    t_ff uut (
+        .T(T), 
+        .clk(clk), 
+        .Q(Q)
+    );
+
+    initial begin
+        clk = 0;
+        forever #5 clk = ~clk;
+    end
+
+    initial begin
+        T = 0;
+        #10;
+        T = 1;
+        #10;
+        #10;
+        #10;
+        T = 0;
+        #10;
+        #10;
+        #20;
+        $finish;
+    end
+endmodule
 
 ```
 
